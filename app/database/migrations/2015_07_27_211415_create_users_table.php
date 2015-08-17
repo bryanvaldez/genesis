@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration {
 			$table->string('last_name');
 			$table->string('email');
 			$table->string('password');
-			$table->enum('user_type', ['admin', 'user']);
+			$table->enum('type', ['admin', 'user']);
 			$table->string('remember_token')->nullable();	
 
 			$table->timestamps();

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', 'HomeController@index');
+Route::get('employees/{slug}/{id}', ['as'=>'category', 'uses' => 'EmployeesController@category']);
+Route::get('{slug}/{id}', ['as'=>'employee', 'uses' => 'EmployeesController@show']);
+

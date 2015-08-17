@@ -16,7 +16,7 @@ class CreateEmployeesTable extends Migration {
 		{
 			$table->increments('id');
 
-			$table->string('web_site_url');
+			$table->string('website_url');
 			$table->text('description');
 			$table->enum('job_type', ['full','partial','freelance']);
 			$table->integer('category_id')->unsigned();

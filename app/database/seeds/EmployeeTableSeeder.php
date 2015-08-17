@@ -1,7 +1,9 @@
 <?php
 
-// Composer: "fzaninotto/faker": "v1.3.0"
+// Composer: "fzaninotto/faker": "v1."
 use Faker\Factory as Faker;
+use Genesis\Entities\User;
+use Genesis\Entities\Employee;
 
 class EmployeeTableSeeder extends Seeder {
 
@@ -9,9 +11,30 @@ class EmployeeTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 10) as $index)
+		foreach(range(1, 80) as $index)
 		{
+
+			$firstName = $faker->firstName;
+			$lastName  = $faker->lastName;
+
+			$user = User::create([
+				'name'      => $firstName,
+				'last_name' => $lastName,
+				'email'     => $faker->email,
+				'password'  => \Hash::make(123456),
+				'type'      => 'user'
+
+			]);			
 			Employee::create([
+				'id'          => $user->id,
+				'website_url' => $faker->url,
+				'description' => $faker->text(200),
+				'job_type'    => $faker->randomElement(['full','partial','freelance']),
+				'category_id' => $faker->randomElement([1, 2, 3]),
+				'available'   => true,
+				'slug'        => \Str::slug($firstName . $lastName)
+  
+
 
 			]);
 		}
